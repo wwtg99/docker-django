@@ -9,8 +9,8 @@ if [ -f "/server/requirements.txt" ]; then
     pip install -r /server/requirements.txt
 fi
 # Run other scripts
-if [ -f "/script.sh" ]; then
-    sh /script.sh
+if [ -f "/server/script.sh" ]; then
+    sh /server/script.sh
 fi
 # Start service
 service nginx start

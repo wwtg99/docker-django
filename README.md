@@ -6,15 +6,38 @@ Docker image for django and nginx.
 
 # Usage
 
+## Basic Usage
+
+```
+docker run -d -p 80:80 docker-django
+```
+
+Add your django project.
+```
+docker run -d -p 80:80 -e "APP_NAME=your_app" -v django_project:/server docker-django
+```
+
+Remember to set your app name to `APP_NAME` environment.
+
+## Run custom script before service started
+
+We also support run custom script before service started such as migration or collect static files. Just add a bash script to `/server/script.sh`, the entrypoint script will execute this script if it exists.
+
+Run migration and collect static before service started.
+/server/script.sh
+```
+#!/bin/bash
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py collectstatic
+```
+
 # Implementation
 
 ## Image Structure
 We use gunicorn to run django and use supervisor to hold gunciron process. And we also use nginx to be the proxy for the gunicorn.
 We placed the django root directory to `/server`. Put nginx logs under `/opt/logs/nginx/`, gunicorn logs under `/opt/logs/gunicorn/`.
-
-## Run custom script before service started
-
-We also support run custom script before service started such as migration or collect static files. Just add a bash script to `/script.sh`, the entrypoint script will execute this script if it exists.
 
 ## Extend Image
 
