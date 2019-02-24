@@ -1,7 +1,7 @@
 FROM python:3.6
 LABEL maintainer="wwtg99 <wwtg99@126.com>"
 
-ENV DJANGO_VERSION="2.0" APP_NAME="server"
+ENV DJANGO_VERSION="2.1" APP_NAME="server"
 RUN apt-get update -y && apt-get install -y nginx supervisor && \
     pip install gunicorn django==${DJANGO_VERSION} && \
     mkdir -p /opt/logs/nginx /opt/logs/gunicorn /server

@@ -9,12 +9,12 @@ Docker image for django and nginx.
 ## Basic Usage
 
 ```
-docker run -d -p 80:80 docker-django
+docker run -d -p 80:80 wwtg99/docker-django
 ```
 
 Add your django project.
 ```
-docker run -d -p 80:80 -e "APP_NAME=your_app" -v django_project:/server docker-django
+docker run -d -p 80:80 -e "APP_NAME=your_app" -v django_project:/server wwtg99/docker-django
 ```
 
 Remember to set your app name to `APP_NAME` environment.
